@@ -319,20 +319,64 @@ class Decoder(nn.Module):
 實作 Attention Mechanism
 """
 
+#class Attention(nn.Module):
+#  def __init__(self, hid_dim):
+#    super(Attention, self).__init__()
+#    self.hid_dim = hid_dim
+#    
+#    self.attention_network = nn.Sequential(
+#      nn.Linear(in_features=self.hid_dim,out_features=1),
+#      nn.Softmax(dim=1),
+#    )
+#    # self.projection = nn.Sequential(
+#    #         nn.Linear(hidden_dim, 64),
+#    #         nn.ReLU(True),
+#    #         nn.Linear(64,1)
+#    # )
+#  
+#  def forward(self, encoder_outputs, decoder_hidden):
+#    # encoder_outputs = [batch size, sequence len, hid dim * directions]
+#    # decoder_hidden = [num_layers, batch size, hid dim]
+#    # 一般來說是取 Encoder 最後一層的 hidden state 來做 attention
+#    ########
+#    # TODO #
+#    ########
+#    # attention=None
+#    # print(encoder_outputs.shape)
+#    # print(decoder_hidden.shape)
+#    att_cat = torch.cat((encoder_outputs,decoder_hidden[-1].unsqueeze(1)),dim=1)
+#    # print(att_cat.shape)
+#    attn_weights = self.attention_network(att_cat)
+#    # print(attn_weights.shape)
+#    # exit()
+#    # print(decoder_hidden[-1].shape)
+#    # print(decoder_hidden[-1].view(config.batch_size,1,-1).shape)
+#    # print(decoder_hidden[-1])
+#    # exit()
+#    # print(encoder_outputs.shape)
+#    # print(encoder_outputs.reshape(config.batch_size,-1).shape)
+#    # print(encoder_outputs.view(config.batch_size,-1).shape)
+#    # print(decoder_hidden[-1].shape)
+#    # att_cat = torch.cat((encoder_outputs.reshape(config.batch_size,-1),decoder_hidden[-1]),dim=1)
+#    # att_cat = torch.cat((encoder_outputs,decoder_hidden[-1].view(config.batch_size,1,-1)),dim=1)
+#    # print(att_cat.shape)
+#    # exit()
+#    attn_weights = self.attention_network(att_cat)
+#    # print(attn_weights.shape)
+#    # print(attn_weights[:,:-1,:].shape)
+#    # exit()
+#    # print(attn_weights.unsqueeze(2).shape)
+#    # attn_applied = attn_weights.unsqueeze(1) * encoder_outputs
+#    attn_applied = attn_weights[:,:-1,:] * encoder_outputs
+#    # attn_applied = torch.bmm(attn_weights[:,:-1,:],encoder_outputs)
+#
+#    # print(attn_applied.shape)
+#    # exit()
+#    return attn_applied
 class Attention(nn.Module):
   def __init__(self, hid_dim):
     super(Attention, self).__init__()
     self.hid_dim = hid_dim
-    
-    self.attention_network = nn.Sequential(
-      nn.Linear(in_features=self.hid_dim,out_features=1),
-      nn.Softmax(dim=1),
-    )
-    # self.projection = nn.Sequential(
-    #         nn.Linear(hidden_dim, 64),
-    #         nn.ReLU(True),
-    #         nn.Linear(64,1)
-    # )
   
   def forward(self, encoder_outputs, decoder_hidden):
     # encoder_outputs = [batch size, sequence len, hid dim * directions]
@@ -341,39 +385,9 @@ class Attention(nn.Module):
     ########
     # TODO #
     ########
-    # attention=None
-    # print(encoder_outputs.shape)
-    # print(decoder_hidden.shape)
-    att_cat = torch.cat((encoder_outputs,decoder_hidden[-1].unsqueeze(1)),dim=1)
-    # print(att_cat.shape)
-    attn_weights = self.attention_network(att_cat)
-    # print(attn_weights.shape)
-    # exit()
-    # print(decoder_hidden[-1].shape)
-    # print(decoder_hidden[-1].view(config.batch_size,1,-1).shape)
-    # print(decoder_hidden[-1])
-    # exit()
-    # print(encoder_outputs.shape)
-    # print(encoder_outputs.reshape(config.batch_size,-1).shape)
-    # print(encoder_outputs.view(config.batch_size,-1).shape)
-    # print(decoder_hidden[-1].shape)
-    # att_cat = torch.cat((encoder_outputs.reshape(config.batch_size,-1),decoder_hidden[-1]),dim=1)
-    # att_cat = torch.cat((encoder_outputs,decoder_hidden[-1].view(config.batch_size,1,-1)),dim=1)
-    # print(att_cat.shape)
-    # exit()
-    attn_weights = self.attention_network(att_cat)
-    # print(attn_weights.shape)
-    # print(attn_weights[:,:-1,:].shape)
-    # exit()
-    # print(attn_weights.unsqueeze(2).shape)
-    # attn_applied = attn_weights.unsqueeze(1) * encoder_outputs
-    attn_applied = attn_weights[:,:-1,:] * encoder_outputs
-    # attn_applied = torch.bmm(attn_weights[:,:-1,:],encoder_outputs)
-
-    # print(attn_applied.shape)
-    # exit()
-    return attn_applied
-
+    attention=None
+    
+    return attention
 """## Seq2Seq
 - 由 **Encoder** 和 **Decoder** 組成
 - 接收輸入並傳給 **Encoder** 
