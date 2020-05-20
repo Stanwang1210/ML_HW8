@@ -712,7 +712,7 @@ def test_process(config):
 import time
 class configurations(object):
   def __init__(self):
-    self.batch_size = 60
+    self.batch_size = 40
     self.emb_dim = 256
     self.hid_dim = 512
     self.n_layers = 3
