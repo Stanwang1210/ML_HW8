@@ -48,7 +48,7 @@ Original file is located at
 
 # Commented out IPython magic to ensure Python compatibility.
 # %%capture
-!pip3 install --user nltk
+#!pip3 install --user nltk
 
 # Commented out IPython magic to ensure Python compatibility.
 # %%capture
